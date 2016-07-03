@@ -1,0 +1,4 @@
+[submodule "icalcreator"]
+	path = lib/iCalcreator
+	url = git@github.com:moritzz/iCalcreator.git
+	branch = master
