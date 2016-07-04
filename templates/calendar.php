@@ -14,7 +14,7 @@ if ($page->timezone()->isNotEmpty()) {
 $calendar = new vcalendar($calendar_config);
 $calendar->setProperty("method", "PUBLISH");
 $calendar->setProperty("x-wr-calname", $page->title()->value);
-$calendar->setProperty("X-WR-CALDESC", $page->text()->kirbytext());
+$calendar->setProperty("X-WR-CALDESC", $page->text()->excerpt());
 $calendar->setProperty("X-WR-RELCALID", $page->hash());
 
 if ($page->timezone()->isNotEmpty()) {
@@ -29,7 +29,7 @@ if ($events->count() > 0):
     $end = $ally_event->end_timestamp()->value;
     $event = new vevent($calendar->getConfig());
     $event->setProperty('summary', $ally_event->summary()->value);
-    $event->setProperty('description', $ally_event->description()->kirbytext());
+    $event->setProperty('description', $ally_event->description()->excerpt());
     $event->setProperty('uid', $ally_event->uid());
     $event->setProperty('url', $ally_event->url());
     $event->setProperty('dtstart', 
