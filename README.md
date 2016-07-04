@@ -14,7 +14,7 @@ Kirby Plugin to expose Calendar Data in iCal format.
 1. Open a shell at the root of your Kirby or Kirby Starterkit installation.
 2. Run `git submodule add -b master --name calendar git@github.com:moritzz/Kirby-Calendar.git site/plugins/calendar`
 
-## Creating a Blog and Posts
+## Creating a Calendar and Events
 
 1. Open Kirby Panel.
 2. Create a Calendar page.
@@ -29,6 +29,7 @@ To run multiple calendars on one site too, just create multiple Calendar pages w
 # Version History #
 
 - v1.0: First official release
+- v1.0.1: Fixed typo in Read Me
 
 # Planned Additions
 
