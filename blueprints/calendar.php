@@ -18,3 +18,9 @@ fields:
     label: Text
     type: textarea
     help: Description of the calendar stream.
+  timezone:
+    label: Timezone
+    type: text
+    required: true
+    help: >
+      Enter a valid <a href="/calendar/timezones" title="Calendar Timezones" target="timezones">DateTimeZone ID</a>.

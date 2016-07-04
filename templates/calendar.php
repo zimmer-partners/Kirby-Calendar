@@ -5,15 +5,21 @@ header("Content-Disposition: inline; filename={$page->slug()}.ics");
 
 $calendar_config = array(
   'unique_id' => url::host($site->url()), 
-  'TZID' => 'Europe/Zurich'
 );
+
+if ($page->timezone()->isNotEmpty()) {
+  $calendar_config['TZID'] = $page->timezone()->value;
+}
 
 $calendar = new vcalendar($calendar_config);
 $calendar->setProperty("method", "PUBLISH");
 $calendar->setProperty("x-wr-calname", $page->title()->value);
 $calendar->setProperty("X-WR-CALDESC", $page->text()->kirbytext());
 $calendar->setProperty("X-WR-RELCALID", $page->hash());
-$calendar->setProperty("X-WR-TIMEZONE", $calendar_config['TZID']);
+
+if ($page->timezone()->isNotEmpty()) {
+  $calendar->setProperty("X-WR-TIMEZONE", $page->timezone());
+}
 
 
 $events = $page->events($own = true, $allies = array('children' => true, 'siblings' => true));
@@ -24,7 +30,8 @@ if ($events->count() > 0):
     $event = new vevent($calendar->getConfig());
     $event->setProperty('summary', $ally_event->summary()->value);
     $event->setProperty('description', $ally_event->description()->kirbytext());
-    $event->setProperty('url', $event->page()->url());
+    $event->setProperty('uid', $ally_event->uid());
+    $event->setProperty('url', $ally_event->url());
     $event->setProperty('dtstart', 
       array(
         'year'  => strftime('%Y', $begin), 
@@ -46,7 +53,9 @@ if ($events->count() > 0):
       )
     );
     $calendar->setComponent($event);
-    iCalUtilityFunctions::createTimezone($calendar, $calendar_config['TZID']);
+    if ($page->timezone()->isNotEmpty()) {
+      iCalUtilityFunctions::createTimezone($calendar, $page->timezone()->value);
+    }
   endforeach;
 endif;
 
