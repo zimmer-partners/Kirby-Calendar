@@ -26,7 +26,7 @@ class CalendarPage extends Page {
     // Unite data with allied pages in config
     foreach ($allies as $ally_name => $integrate) {
       if ($integrate) {
-        foreach ($this->$ally_name() as $key => $page) {
+        foreach ($this->$ally_name()->visible() as $key => $page) {
           $page_events = $page->content()->get($field_name);
           if ($page_events->isNotEmpty()) {
             $page_events = $page_events->yaml();
@@ -44,7 +44,7 @@ class CalendarPage extends Page {
     $event['begin_timestamp'] = $this::getTimestamp($event['begin_date'], $event['begin_time']);
     $event['end_timestamp'] = $this::getTimestamp($event['end_date'], $event['end_time']);
     $event['url'] = $page->url();
-    $event['uid'] = $page->hash() . '-' . base_convert(sprintf('%u', crc32($event['begin_timestamp'])), 10, 36);
+    $event['uid'] = $page->hash() . '-' . base_convert(sprintf('%u', crc32($key)), 10, 36);
   }
   
   /**
