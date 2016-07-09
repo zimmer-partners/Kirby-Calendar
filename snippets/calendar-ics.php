@@ -11,6 +11,13 @@ if ($page->timezone()->isNotEmpty()) {
   $calendar_config['TZID'] = $page->timezone()->value;
 }
 
+if ($page->site()->email()->isNotEmpty()) {
+  $organizer = $page->site()->email();
+} else {
+  $organizer = 'info@' . url::host($page->url());
+}
+
+
 $calendar = new vcalendar($calendar_config);
 $calendar->setProperty("method", "PUBLISH");
 $calendar->setProperty("x-wr-calname", $page->title()->value);
@@ -32,6 +39,7 @@ if ($events->count() > 0):
     $event->setProperty('description', $ally_event->description()->excerpt());
     $event->setProperty('uid', $ally_event->uid());
     $event->setProperty('url', $ally_event->url());
+    $event->setProperty('organizer', $organizer);
     $event->setProperty('dtstart', 
       array(
         'year'  => strftime('%Y', $begin), 
