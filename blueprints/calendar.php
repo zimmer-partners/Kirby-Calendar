@@ -18,6 +18,10 @@ fields:
     label: Text
     type: textarea
     help: Description of the calendar stream.
+  webcal_text:
+    label: Webcal Link Text
+    type: text
+    default: Subscribe to all calendar events below.
   timezone:
     label: Timezone
     type: text
