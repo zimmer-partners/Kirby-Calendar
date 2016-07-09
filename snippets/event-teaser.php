@@ -5,10 +5,10 @@
     <?php $debug = $event->begin_timestamp()->value ?>
     <ul>
       <li class="begin">
-        <time datetime="<?= strftime('%Y-%m-%dT%H:%M:%S', $event->begin_timestamp()->value) ?>"><?= strftime('%d.%m.%y %H:%M:%S', $event->begin_timestamp()->value) ?></time>
+        <?= $event->begin_date_time() ?>
       </li>
       <li class="end">
-        <time datetime="<?= strftime('%Y-%m-%dT%H:%M:%S', $event->end_timestamp()->value) ?>"><?= strftime('%d.%m.%y %H:%M:%S', $event->end_timestamp()->value) ?></time>
+         <?= $event->end_date_time() ?>
       </li>
     </ul>
     

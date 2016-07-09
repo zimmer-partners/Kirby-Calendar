@@ -1,6 +1,6 @@
 # Kirby-Calendar
 
-Kirby Plugin to expose Calendar Data in iCal format.
+Kirby Plugin to expose Calendar Data as HTML overview and as ICS subscription.
 
 # Installation
 
@@ -24,12 +24,16 @@ Kirby Plugin to expose Calendar Data in iCal format.
 
 To run multiple calendars on one site too, just create multiple Calendar pages with corresponding Event child pages.
 
-**Nota bene:** By default a Calendar page *does not* render any page, but a ICS stream with events from all its sibling and child pages with events attached. Therefore it's possible to add such a structure field to any existing page type. My [Blog plugin](https://github.com/moritzz/Kirby-Blog) already supports calendar integration. Please refer to its [Read Me file](https://github.com/moritzz/Kirby-Blog/blob/master/README.md) on how to add a calendar stream with all events attached to your Blog.
+**Nota bene:** By default a Calendar page does render a standard webpage with a link to the same feed as ICS that users can subscribe to with Apple or Google Calendar or most other calendar apps. The summary and subscription updates to data from a calendar page's *siblings and child pages* with events attached. Therefore it's possible to add such a structure field to any existing page type. My [Blog plugin](https://github.com/moritzz/Kirby-Blog) already supports calendar integration. Please refer to its [Read Me file](https://github.com/moritzz/Kirby-Blog/blob/master/README.md) on how to add a calendar stream with all events attached to your Blog.
 
 # Version History #
 
 - v1.0: First official release
 - v1.0.1: Fixed typo in Read Me
+- v1.1: Scheme aware calendar overview
+  - Added support to list all events as webpage
+  - Added a dedicated option to subscribe to all current an future events as ICS
+  - Removed Kirby `date.handler` setting dependency 
 
 # Planned Additions
 

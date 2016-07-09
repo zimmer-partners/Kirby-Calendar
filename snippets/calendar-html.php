@@ -1,11 +1,21 @@
 <?php snippet('header') ?>
-
+  
+  <link rel="stylesheet" href="<?= $site->url() ?>/assets/plugins/calendar/css/calendar.css">
+  
   <main class="main" role="main">
 
     <div class="text">
       <h1><?= $page->title()->html() ?></h1>
       <?= $page->text()->kirbytext() ?>
     </div>
+    
+    <?php if ($page->webcal_text()->isNotEmpty()): ?>
+      <section class="webcal">
+        <p>
+          <a class="webcal-link" href="<?= $page->webcal_url() ?>"><img class="webcal-icon" src="<?= $site->url() ?>/assets/plugins/calendar/images/ics-file-format-symbol.svg" alt="ICS File" height="32px" border="0"/><?= $page->webcal_text()->escape() ?></a>
+        </p>
+      </section>
+    <?php endif ?>
     
     <?php $events = $page->events($own = true, $allies = array('children' => true, 'siblings' => true)); ?>
     <?php $debug = $events->count() ?>

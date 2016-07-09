@@ -26,7 +26,7 @@ class CalendarPage extends Page {
     // Unite data with allied pages in config
     foreach ($allies as $ally_name => $integrate) {
       if ($integrate) {
-        foreach ($this->$ally_name() as $key => $page) {
+        foreach ($this->$ally_name()->visible() as $key => $page) {
           $page_events = $page->content()->get($field_name);
           if ($page_events->isNotEmpty()) {
             $page_events = $page_events->yaml();
@@ -43,8 +43,10 @@ class CalendarPage extends Page {
   protected function summarizeDates(&$event, $key, $page) {
     $event['begin_timestamp'] = $this::getTimestamp($event['begin_date'], $event['begin_time']);
     $event['end_timestamp'] = $this::getTimestamp($event['end_date'], $event['end_time']);
+    $event['begin_date_time'] = '<time datetime="' . strftime('%Y-%m-%dT%H:%M:%S', $event['begin_timestamp']) .'">' . strftime('%d.%m.%y', $event['begin_timestamp']) . '</time>';
+    $event['end_date_time'] = '<time datetime="' . strftime('%Y-%m-%dT%H:%M:%S', $event['end_timestamp']) .'">' . strftime('%d.%m.%y', $event['end_timestamp']) . '</time>';
     $event['url'] = $page->url();
-    $event['uid'] = $page->hash() . '-' . base_convert(sprintf('%u', crc32($event['begin_timestamp'])), 10, 36);
+    $event['uid'] = $page->hash() . '-' . base_convert(sprintf('%u', crc32($key)), 10, 36);
   }
   
   /**
@@ -55,6 +57,10 @@ class CalendarPage extends Page {
    */
   private static function getTimestamp($date, $time = '') {
     return ($date) ? strtotime($date . ' ' . $time) : false;
+  }
+  
+  public function webcal_url() {
+    return url::build(array('scheme' => 'webcal'), $this->url());
   }
   
 }
