@@ -43,8 +43,8 @@ class CalendarPage extends Page {
   protected function summarizeDates(&$event, $key, $page) {
     $event['begin_timestamp'] = $this::getTimestamp($event['begin_date'], $event['begin_time']);
     $event['end_timestamp'] = $this::getTimestamp($event['end_date'], $event['end_time']);
-    $event['begin_date_time'] = '<time datetime="' . strftime('%Y-%m-%dT%H:%M:%S', $event['begin_timestamp']) .'">' . strftime('%d.%m.%y', $event['begin_timestamp']) . '</time>';
-    $event['end_date_time'] = '<time datetime="' . strftime('%Y-%m-%dT%H:%M:%S', $event['end_timestamp']) .'">' . strftime('%d.%m.%y', $event['end_timestamp']) . '</time>';
+    $event['begin_date_time'] = '<time datetime="' . strftime('%Y-%m-%dT%H:%M:%S', $event['begin_timestamp']) .'">' . strftime('%d.%m.%y %H:%M', $event['begin_timestamp']) . '</time>';
+    $event['end_date_time'] = '<time datetime="' . strftime('%Y-%m-%dT%H:%M:%S', $event['end_timestamp']) .'">' . strftime('%d.%m.%y %H:%M', $event['end_timestamp']) . '</time>';
     $event['url'] = $page->url();
     $event['uid'] = $page->hash() . '-' . base_convert(sprintf('%u', crc32($key)), 10, 36);
   }
@@ -60,7 +60,7 @@ class CalendarPage extends Page {
   }
   
   public function webcal_url() {
-    return url::build(array('scheme' => 'webcal'), $this->url());
+    return url::build(array('scheme' => 'webcal', 'query' => array('ics' => true)), $this->url());
   }
   
 }
