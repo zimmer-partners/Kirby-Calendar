@@ -33,7 +33,8 @@ To run multiple calendars on one site too, just create multiple Calendar pages w
 - v1.1: Scheme aware calendar overview
   - Added support to list all events as webpage
   - Added a dedicated option to subscribe to all current an future events as ICS
-  - Removed Kirby `date.handler` setting dependency 
+  - Removed Kirby `date.handler` setting dependency
+- v1.1.1: Fixed ICS delivery based on scheme only
 
 # Planned Additions
 
