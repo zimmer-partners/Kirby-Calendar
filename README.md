@@ -35,6 +35,7 @@ To run multiple calendars on one site too, just create multiple Calendar pages w
   - Added a dedicated option to subscribe to all current an future events as ICS
   - Removed Kirby `date.handler` setting dependency
 - v1.1.1: Fixed ICS delivery based on scheme only
+- v1.1.2: Fixed "Field cannot be extended" error (#2)
 
 # Planned Additions
 
