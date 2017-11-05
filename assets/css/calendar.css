@@ -1,4 +1,6 @@
-.webcal-icon {
+img.webcal-icon {
   float: left;
   margin-right: 1ex;
+  height: 1em;
+  width: 1em;
 }
