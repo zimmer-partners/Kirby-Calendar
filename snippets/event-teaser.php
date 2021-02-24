@@ -1,5 +1,7 @@
-<article class="event">
-  <h1><?= $event->summary()->escape() ?></h1>
+<article class="event text wrap">
+  <?php if (isset($title_flag) && $title_flag): ?>
+    <h1><?= $event->summary()->escape() ?></h1>
+  <?php endif; ?>
   <div class="description">
     <?= $event->description()->kirbytext() ?>
   </div>

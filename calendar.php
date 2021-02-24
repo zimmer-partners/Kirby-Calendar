@@ -25,7 +25,7 @@ $kirby->set('route', array(
 // = Load Library Compoents =
 // ==========================
 
-require_once(__DIR__ . '/lib/iCalcreator/iCalcreator.php');
+require_once(__DIR__ . '/lib/iCalcreator/autoload.php');
 
 // ===================
 // = Model Registery =
